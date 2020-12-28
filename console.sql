@@ -14,15 +14,6 @@ PRIMARY KEY (pesel),
 FOREIGN KEY (pesel) REFERENCES  Citizens(pesel)
 );
 
-CREATE OR REPLACE TABLE Birthdays (
-pesel VARCHAR(11),
-dayOfBirth INT UNSIGNED NOT NULL,
-monthOfBirth INT UNSIGNED NOT NULL,
-yearOfBirth INT UNSIGNED NOT NULL,
-PRIMARY KEY (pesel),
-FOREIGN KEY (pesel) REFERENCES  Citizens(pesel)
-);
-
 CREATE OR REPLACE TABLE CityStats (
 name VARCHAR(32),
 population INT NOT NULL,
