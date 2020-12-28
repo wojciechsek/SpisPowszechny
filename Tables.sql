@@ -33,7 +33,7 @@ FOREIGN KEY (city) REFERENCES  CityStats(name)
 
 CREATE OR REPLACE TABLE GenderStats (
 gender VARCHAR(32),
-quanity INT UNSIGNED NOT NULL,
+quantity INT UNSIGNED NOT NULL,
 PRIMARY KEY (gender)
 );
 
@@ -54,7 +54,7 @@ FOREIGN KEY (pesel) REFERENCES  Citizens(pesel)
 
 CREATE OR REPLACE TABLE YearStats (
 year INT UNSIGNED,
-quanity INT UNSIGNED NOT NULL,
+quantity INT UNSIGNED NOT NULL,
 PRIMARY KEY (year)
 );
 
