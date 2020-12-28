@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand />
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b721811a-aa08-42ea-825c-97c4726d6e50" name="Default Changelist" comment="Added all tables.">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="b721811a-aa08-42ea-825c-97c4726d6e50" name="Default Changelist" comment="Some xmls.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,6 +130,11 @@ FOREIGN KEY (pesel) REFERENCES  Citizens(pesel)
             </State>
           </value>
         </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
       </map>
     </option>
     <option name="OPEN_GENERIC_TABS">
@@ -134,24 +142,26 @@ FOREIGN KEY (pesel) REFERENCES  Citizens(pesel)
         <entry key="1" value="TOOL_WINDOW" />
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added all tables." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added all tables." />
+    <MESSAGE value="Some xmls." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some xmls." />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609170026316">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1609170026316" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1609174577459">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1609175197904">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609174577459" />
-    <state x="632" y="310" key="Github.ShareDialog" timestamp="1609174712456">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609175197904" />
+    <state x="632" y="310" key="Github.ShareDialog" timestamp="1609175218586">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="632" y="310" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1609174712456" />
+    <state x="632" y="310" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1609175218586" />
     <state x="447" y="110" key="Github.UntrackedFilesDialog" timestamp="1609174781314">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -176,10 +186,10 @@ FOREIGN KEY (pesel) REFERENCES  Citizens(pesel)
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1609170013090" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1609172953249">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1609174931001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609172953249" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609174931001" />
     <state x="668" y="289" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1609170092663">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
