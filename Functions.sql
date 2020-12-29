@@ -1,4 +1,48 @@
 DELIMITER $$
+CREATE OR REPLACE FUNCTION getInhabitants (city VARCHAR(32)) RETURNS INT
+BEGIN
+    RETURN (SELECT C.population
+        FROM citystats C
+        WHERE C.name = city);
+END $$
+
+CREATE OR REPLACE FUNCTION countGenders (gender VARCHAR(32)) RETURNS INT
+BEGIN
+    RETURN (SELECT COUNT(G.pesel)
+        FROM genders G
+        WHERE G.gender = gender
+        GROUP BY G.gender);
+END $$
+
+CREATE OR REPLACE FUNCTION countYears (year INT) RETURNS INT
+BEGIN
+    RETURN (SELECT COUNT(B.pesel)
+        FROM birthdays B
+        WHERE B.yearOfBirth = year
+        GROUP BY B.yearOfBirth);
+END $$
+
+CREATE OR REPLACE FUNCTION getCitizenName (pesel VARCHAR(11)) RETURNS VARCHAR(32)
+BEGIN
+    RETURN (SELECT C.name
+        FROM citizens C
+        WHERE C.pesel = pesel);
+END $$
+
+CREATE OR REPLACE FUNCTION getCitizenSurname (pesel VARCHAR(11)) RETURNS VARCHAR(32)
+BEGIN
+    RETURN (SELECT C.surname
+        FROM citizens C
+        WHERE C.pesel = pesel);
+END $$
+
+CREATE OR REPLACE FUNCTION getCitizenGender (pesel VARCHAR(11)) RETURNS VARCHAR(32)
+BEGIN
+    RETURN (SELECT G.gender
+        FROM genders G
+        WHERE G.pesel = pesel);
+END $$
+
 CREATE OR REPLACE FUNCTION getCitizenDayOfBirth (pesel VARCHAR(11)) RETURNS INT
 BEGIN
      RETURN (SELECT B.dayOfBirth
@@ -93,121 +137,6 @@ END $$
 CREATE OR REPLACE FUNCTION yearExists (year INT) RETURNS INT
 BEGIN
     RETURN EXISTS(SELECT * FROM yearstats Y WHERE Y.year = year);
-END $$
-
-CREATE OR REPLACE FUNCTION countInhabitants (city VARCHAR(32)) RETURNS INT
-BEGIN
-    RETURN (SELECT COUNT(A.pesel)
-        FROM addresses A
-        GROUP BY A.city
-        HAVING A.city = city);
-END $$
-
-CREATE OR REPLACE FUNCTION getInhabitants (city VARCHAR(32)) RETURNS INT
-BEGIN
-    RETURN (SELECT C.population
-        FROM citystats C
-        WHERE C.name = city);
-END $$
-
-CREATE OR REPLACE FUNCTION countGenders (gender VARCHAR(32)) RETURNS INT
-BEGIN
-    RETURN (SELECT COUNT(G.pesel)
-        FROM genders G
-        GROUP BY G.gender
-        HAVING G.gender = gender);
-END $$
-
-CREATE OR REPLACE FUNCTION countYears (year INT) RETURNS INT
-BEGIN
-    RETURN (SELECT COUNT(B.pesel)
-        FROM birthdays B
-        GROUP BY B.yearOfBirth
-        HAVING B.yearOfBirth = year);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenName (pesel VARCHAR(11)) RETURNS VARCHAR(32)
-BEGIN
-    RETURN (SELECT C.name
-        FROM citizens C
-        WHERE C.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenSurname (pesel VARCHAR(11)) RETURNS VARCHAR(32)
-BEGIN
-    RETURN (SELECT C.surname
-        FROM citizens C
-        WHERE C.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenGender (pesel VARCHAR(11)) RETURNS VARCHAR(32)
-BEGIN
-    RETURN (SELECT G.gender
-        FROM genders G
-        WHERE G.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenDayOfBirth (pesel VARCHAR(11)) RETURNS INT
-BEGIN
-    RETURN (SELECT B.dayOfBirth
-        FROM birthdays B
-        WHERE B.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenMonthOfBirth (pesel VARCHAR(11)) RETURNS INT
-BEGIN
-    RETURN (SELECT B.monthOfBirth
-        FROM birthdays B
-        WHERE B.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenYearOfBirth (pesel VARCHAR(11)) RETURNS INT
-BEGIN
-    RETURN (SELECT B.yearOfBirth
-        FROM birthdays B
-        WHERE B.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenCity (pesel VARCHAR(11)) RETURNS VARCHAR(32)
-BEGIN
-    RETURN (SELECT A.city
-        FROM addresses A
-        WHERE A.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenCity (pesel VARCHAR(11)) RETURNS VARCHAR(32)
-BEGIN
-    RETURN (SELECT A.city
-        FROM addresses A
-        WHERE A.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenStreet (pesel VARCHAR(11)) RETURNS VARCHAR(32)
-BEGIN
-    RETURN (SELECT A.street
-        FROM addresses A
-        WHERE A.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenHouse (pesel VARCHAR(11)) RETURNS VARCHAR(32)
-BEGIN
-    RETURN (SELECT A.house
-        FROM addresses A
-        WHERE A.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION getCitizenFlat (pesel VARCHAR(11)) RETURNS VARCHAR(32)
-BEGIN
-    RETURN (SELECT A.flat
-        FROM addresses A
-        WHERE A.pesel = pesel);
-END $$
-
-CREATE OR REPLACE FUNCTION citizenExists (pesel VARCHAR(11)) RETURNS VARCHAR(32)
-BEGIN
-    RETURN (SELECT A.flat
-        FROM addresses A
-        WHERE A.pesel = pesel);
 END $$
 
 CREATE OR REPLACE FUNCTION checkPassword (pesel VARCHAR(11), password VARCHAR(32)) RETURNS INT
