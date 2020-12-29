@@ -5,7 +5,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b721811a-aa08-42ea-825c-97c4726d6e50" name="Default Changelist" comment="Some xmls.">
+    <list default="true" id="b721811a-aa08-42ea-825c-97c4726d6e50" name="Default Changelist" comment="Additional Birthdays declaration deleted.">
+      <change beforePath="$APPLICATION_CONFIG_DIR$/consoles/db/cf905de3-9aea-4faa-a5ee-3beb0e89df68/Functions.sql" beforeDir="false" afterPath="$APPLICATION_CONFIG_DIR$/consoles/db/cf905de3-9aea-4faa-a5ee-3beb0e89df68/Functions.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf905de3-9aea-4faa-a5ee-3beb0e89df68.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf905de3-9aea-4faa-a5ee-3beb0e89df68.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,13 +150,18 @@ FOREIGN KEY (pesel) REFERENCES  Citizens(pesel)
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added all tables." />
     <MESSAGE value="Some xmls." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some xmls." />
+    <MESSAGE value="Additional Birthdays declaration deleted." />
+    <option name="LAST_COMMIT_MESSAGE" value="Additional Birthdays declaration deleted." />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609170026316">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1609170026316" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1609192713626">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1609192713626" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1609175197904">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -166,34 +174,34 @@ FOREIGN KEY (pesel) REFERENCES  Citizens(pesel)
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="447" y="110" key="Github.UntrackedFilesDialog/0.0.1536.824@0.0.1536.824" timestamp="1609174781314" />
-    <state width="1024" height="210" key="GridCell.Tab.0.bottom" timestamp="1609174577462">
+    <state width="1024" height="210" key="GridCell.Tab.0.bottom" timestamp="1609253575678">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609174577462" />
-    <state width="1024" height="210" key="GridCell.Tab.0.center" timestamp="1609174577462">
+    <state width="1024" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609253575678" />
+    <state width="1024" height="210" key="GridCell.Tab.0.center" timestamp="1609253575678">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609174577462" />
-    <state width="1024" height="210" key="GridCell.Tab.0.left" timestamp="1609174577462">
+    <state width="1024" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609253575678" />
+    <state width="1024" height="210" key="GridCell.Tab.0.left" timestamp="1609253575678">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609174577462" />
-    <state width="1024" height="210" key="GridCell.Tab.0.right" timestamp="1609174577462">
+    <state width="1024" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609253575678" />
+    <state width="1024" height="210" key="GridCell.Tab.0.right" timestamp="1609253575678">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609174577462" />
+    <state width="1024" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609253575678" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1609170013090">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1609170013090" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1609174931001">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1609175409948">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609174931001" />
-    <state x="668" y="289" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1609170092663">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609175409948" />
+    <state x="668" y="289" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1609252931140">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="668" y="289" key="com.intellij.database.actions.DdlActions$CreateObject$1/0.0.1536.824@0.0.1536.824" timestamp="1609170092663" />
+    <state x="668" y="289" key="com.intellij.database.actions.DdlActions$CreateObject$1/0.0.1536.824@0.0.1536.824" timestamp="1609252931140" />
     <state x="607" y="300" width="322" height="243" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1609170071662">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -202,5 +210,9 @@ FOREIGN KEY (pesel) REFERENCES  Citizens(pesel)
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1609174789335" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609192579261">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1609192579261" />
   </component>
 </project>

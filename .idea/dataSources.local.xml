@@ -14,6 +14,7 @@
           <node kind="schema">
             <name qname="@" />
             <name qname="spispowszechny" />
+            <name qname="census" />
           </node>
         </introspection-scope>
       </schema-mapping>
