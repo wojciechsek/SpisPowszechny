@@ -1,5 +1,70 @@
 DELIMITER $$
 
+CREATE OR REPLACE PROCEDURE addCity (city VARCHAR(32))
+BEGIN
+    INSERT INTO citystats (name, population)
+    VALUES (city, 0);
+END $$
+
+CREATE OR REPLACE PROCEDURE addYear (year INT)
+BEGIN
+    INSERT INTO yearstats (year, quantity)
+    VALUES (year, 0);
+END $$
+
+CREATE OR REPLACE PROCEDURE deleteCitizenPassword(pesel VARCHAR(11))
+BEGIN
+    DELETE FROM passwords P WHERE P.pesel = pesel;
+END $$
+
+CREATE OR REPLACE PROCEDURE deleteCitizenStatus(pesel VARCHAR(11))
+BEGIN
+    DELETE FROM statuses S WHERE S.pesel = pesel;
+END $$
+
+CREATE OR REPLACE PROCEDURE deleteCitizenGender(pesel VARCHAR(11))
+BEGIN
+    DELETE FROM genders G WHERE G.pesel = pesel;
+END $$
+
+CREATE OR REPLACE PROCEDURE deleteCitizenBirthday(pesel VARCHAR(11))
+BEGIN
+    DELETE FROM birthdays B WHERE B.pesel = pesel;
+END $$
+
+CREATE OR REPLACE PROCEDURE deleteCitizenAddress(pesel VARCHAR(11))
+BEGIN
+    DELETE FROM addresses A WHERE A.pesel = pesel;
+END $$
+
+CREATE OR REPLACE PROCEDURE changeAddress(pesel VARCHAR(11), city VARCHAR(32), street VARCHAR(32), house INT, flat INT)
+BEGIN
+    SET AUTOCOMMIT = 0;
+    START TRANSACTION;
+        IF (pesel REGEXP '^[0-9]+$' AND LENGTH(pesel) = 11 AND citizenExists(pesel) = 0) THEN
+            PREPARE stmt FROM 'UPDATE addresses A
+                               SET A.city = ?, A.street = ?, A.house = ?, A.flat = ?
+                               WHERE A.pesel = ?;';
+            EXECUTE stmt USING city, street, house, flat, pesel;
+            DEALLOCATE PREPARE stmt;
+        END IF;
+    COMMIT;
+END $$
+
+CREATE OR REPLACE PROCEDURE changePassword(pesel VARCHAR(11), oldPassword VARCHAR(32), newPassword VARCHAR(32))
+BEGIN
+    SET AUTOCOMMIT = 0;
+    START TRANSACTION;
+        IF (pesel REGEXP '^[0-9]+$' AND LENGTH(pesel) = 11 AND checkPassword(pesel, oldPassword) = 1) THEN
+            PREPARE stmt FROM 'UPDATE passwords P
+                               SET P.password = ?
+                               WHERE P.pesel = ?;';
+            EXECUTE stmt USING newPassword, pesel;
+            DEALLOCATE PREPARE stmt;
+        END IF;
+    COMMIT;
+END $$
+
 CREATE OR REPLACE PROCEDURE printPersonalData (pesel VARCHAR(11))
 BEGIN
     DECLARE name VARCHAR(32);
