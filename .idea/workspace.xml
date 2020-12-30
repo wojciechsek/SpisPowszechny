@@ -6,8 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b721811a-aa08-42ea-825c-97c4726d6e50" name="Default Changelist" comment="Additional Birthdays declaration deleted.">
-      <change beforePath="$APPLICATION_CONFIG_DIR$/consoles/db/cf905de3-9aea-4faa-a5ee-3beb0e89df68/Functions.sql" beforeDir="false" afterPath="$APPLICATION_CONFIG_DIR$/consoles/db/cf905de3-9aea-4faa-a5ee-3beb0e89df68/Functions.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$APPLICATION_CONFIG_DIR$/consoles/db/cf905de3-9aea-4faa-a5ee-3beb0e89df68/Procedures.sql" beforeDir="false" afterPath="$APPLICATION_CONFIG_DIR$/consoles/db/cf905de3-9aea-4faa-a5ee-3beb0e89df68/Procedures.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf905de3-9aea-4faa-a5ee-3beb0e89df68.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf905de3-9aea-4faa-a5ee-3beb0e89df68.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -174,22 +173,22 @@ FOREIGN KEY (pesel) REFERENCES  Citizens(pesel)
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="447" y="110" key="Github.UntrackedFilesDialog/0.0.1536.824@0.0.1536.824" timestamp="1609174781314" />
-    <state width="1024" height="210" key="GridCell.Tab.0.bottom" timestamp="1609253575678">
+    <state width="1024" height="210" key="GridCell.Tab.0.bottom" timestamp="1609353613333">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609253575678" />
-    <state width="1024" height="210" key="GridCell.Tab.0.center" timestamp="1609253575678">
+    <state width="1024" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609353613333" />
+    <state width="1024" height="210" key="GridCell.Tab.0.center" timestamp="1609353613333">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609253575678" />
-    <state width="1024" height="210" key="GridCell.Tab.0.left" timestamp="1609253575678">
+    <state width="1024" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609353613333" />
+    <state width="1024" height="210" key="GridCell.Tab.0.left" timestamp="1609353613333">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609253575678" />
-    <state width="1024" height="210" key="GridCell.Tab.0.right" timestamp="1609253575678">
+    <state width="1024" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609353613333" />
+    <state width="1024" height="210" key="GridCell.Tab.0.right" timestamp="1609353613333">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609253575678" />
+    <state width="1024" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609353613333" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1609170013090">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
