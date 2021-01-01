@@ -1,11 +1,4 @@
 DELIMITER $$
-CREATE OR REPLACE FUNCTION getInhabitants (city VARCHAR(32)) RETURNS INT
-BEGIN
-    RETURN (SELECT C.population
-        FROM citystats C
-        WHERE C.name = city);
-END $$
-
 CREATE OR REPLACE FUNCTION countGenders (gender VARCHAR(32)) RETURNS INT
 BEGIN
     RETURN (SELECT COUNT(G.pesel)

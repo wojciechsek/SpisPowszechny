@@ -152,4 +152,41 @@ BEGIN
     END IF;
 END $$
 
+CREATE OR REPLACE PROCEDURE displayCityStats (city VARCHAR(32))
+BEGIN
+    SELECT CS.population
+    FROM citystats CS
+    WHERE CS.name = city;
+END $$
+
+CREATE OR REPLACE PROCEDURE displayGenderStats (sgender VARCHAR(32))
+BEGIN
+    SELECT GS.quantity
+    FROM genderstats GS
+    WHERE GS.gender = sgender;
+END $$
+
+CREATE OR REPLACE PROCEDURE displayYearStats (syear INT)
+BEGIN
+    SELECT YS.quantity
+    FROM yearstats YS
+    WHERE YS.year = syear;
+END $$
+
+CREATE OR REPLACE PROCEDURE displayStatus (spesel VARCHAR(11))
+BEGIN
+    SELECT S.status
+    FROM statuses S
+    WHERE S.pesel = spesel;
+END $$
+
+CREATE OR REPLACE PROCEDURE changeStatus (spesel VARCHAR(11), newStatus VARCHAR(32))
+BEGIN
+    IF (getStatus(spesel) = 'Citizen' OR getStatus(spesel) = 'Bureaucrat') THEN
+        UPDATE statuses
+            SET status = newStatus
+            WHERE pesel = spesel;
+    END IF;
+END $$
+
 DELIMITER ;

@@ -1,0 +1,27 @@
+CREATE USER Citizen;
+GRANT EXECUTE ON PROCEDURE printPersonalData TO Citizen;
+GRANT EXECUTE ON PROCEDURE changePassword TO Citizen;
+GRANT EXECUTE ON PROCEDURE changeAddress TO Citizen;
+
+CREATE USER Bureaucrat;
+GRANT EXECUTE ON PROCEDURE printPersonalData TO Bureaucrat;
+GRANT EXECUTE ON PROCEDURE changePassword TO Bureaucrat;
+GRANT EXECUTE ON PROCEDURE changeAddress TO Bureaucrat;
+GRANT EXECUTE ON PROCEDURE addCitizen TO Bureaucrat;
+GRANT EXECUTE ON PROCEDURE deleteCitizen TO Bureaucrat;
+GRANT EXECUTE ON PROCEDURE displayCityStats TO Bureaucrat;
+GRANT EXECUTE ON PROCEDURE displayGenderStats TO Bureaucrat;
+GRANT EXECUTE ON PROCEDURE displayYearStats TO Bureaucrat;
+GRANT EXECUTE ON PROCEDURE displayStatus TO Bureaucrat;
+
+CREATE USER Admin;
+GRANT EXECUTE ON PROCEDURE printPersonalData TO Admin;
+GRANT EXECUTE ON PROCEDURE changePassword TO Admin;
+GRANT EXECUTE ON PROCEDURE changeAddress TO Admin;
+GRANT EXECUTE ON PROCEDURE addCitizen TO Admin;
+GRANT EXECUTE ON PROCEDURE deleteCitizen TO Admin;
+GRANT EXECUTE ON PROCEDURE displayCityStats TO Admin;
+GRANT EXECUTE ON PROCEDURE displayGenderStats TO Admin;
+GRANT EXECUTE ON PROCEDURE displayYearStats TO Admin;
+GRANT EXECUTE ON PROCEDURE displayStatus TO Admin;
+GRANT EXECUTE ON PROCEDURE changeStatus TO Admin;
