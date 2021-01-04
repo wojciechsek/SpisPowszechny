@@ -140,47 +140,47 @@ BEGIN
                                   extractMonthOfBirth(pesel), extractYearOfBirth(pesel));
 END $$
 
-CREATE OR REPLACE PROCEDURE deleteCitizen(pesel VARCHAR(11), status VARCHAR(32))
+CREATE OR REPLACE PROCEDURE deleteCitizen(IN pesel VARCHAR(11), IN status VARCHAR(32), OUT result VARCHAR(60))
 BEGIN
     IF (citizenExists(pesel) AND getStatus(pesel) = status) THEN
         PREPARE stmt FROM 'DELETE FROM citizens WHERE pesel = ?';
         EXECUTE stmt USING pesel;
         DEALLOCATE PREPARE stmt;
-        SELECT 'This citizen has been deleted.';
+        SELECT 'This citizen has been deleted.' INTO result;
     ELSE
-        SELECT 'This citizen does not exist or cant be deleted.';
+        SELECT 'This citizen does not exist or cant be deleted.' INTO result;
     END IF;
 END $$
 
-CREATE OR REPLACE PROCEDURE displayCityStats (city VARCHAR(32))
+CREATE OR REPLACE PROCEDURE displayCityStats (IN city VARCHAR(32), OUT result INT)
 BEGIN
-    SELECT CS.population
+    SELECT CS.population INTO result
     FROM citystats CS
     WHERE CS.name = city;
 END $$
 
-CREATE OR REPLACE PROCEDURE displayGenderStats (sgender VARCHAR(32))
+CREATE OR REPLACE PROCEDURE displayGenderStats (IN sgender VARCHAR(32), OUT result INT)
 BEGIN
-    SELECT GS.quantity
+    SELECT GS.quantity INTO result
     FROM genderstats GS
     WHERE GS.gender = sgender;
 END $$
 
-CREATE OR REPLACE PROCEDURE displayYearStats (syear INT)
+CREATE OR REPLACE PROCEDURE displayYearStats (IN syear INT, OUT result INT)
 BEGIN
-    SELECT YS.quantity
+    SELECT YS.quantity INTO result
     FROM yearstats YS
     WHERE YS.year = syear;
 END $$
 
-CREATE OR REPLACE PROCEDURE displayStatus (spesel VARCHAR(11))
+CREATE OR REPLACE PROCEDURE displayStatus (IN spesel VARCHAR(11), OUT result VARCHAR(32))
 BEGIN
-    SELECT S.status
+    SELECT S.status INTO result
     FROM statuses S
     WHERE S.pesel = spesel;
 END $$
 
-CREATE OR REPLACE PROCEDURE changeStatus (spesel VARCHAR(11), newStatus VARCHAR(32))
+CREATE OR REPLACE PROCEDURE changeStatus (IN spesel VARCHAR(11), IN newStatus VARCHAR(32))
 BEGIN
     IF (getStatus(spesel) = 'Citizen' OR getStatus(spesel) = 'Bureaucrat') THEN
         UPDATE statuses
