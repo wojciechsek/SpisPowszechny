@@ -166,6 +166,7 @@ BEGIN
     WHERE GS.gender = sgender;
 END $$
 
+
 CREATE OR REPLACE PROCEDURE displayYearStats (IN syear INT, OUT result INT)
 BEGIN
     SELECT YS.quantity INTO result
