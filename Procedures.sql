@@ -1,43 +1,43 @@
 DELIMITER $$
 
-CREATE OR REPLACE PROCEDURE addCity(city VARCHAR(32))
+CREATE OR REPLACE PROCEDURE addCity(IN city VARCHAR(32))
 BEGIN
     INSERT INTO citystats (name, population)
     VALUES (city, 0);
 END $$
 
-CREATE OR REPLACE PROCEDURE addYear(year INT)
+CREATE OR REPLACE PROCEDURE addYear(IN ayear INT)
 BEGIN
     INSERT INTO yearstats (year, quantity)
-    VALUES (year, 0);
+    VALUES (ayear, 0);
 END $$
 
-CREATE OR REPLACE PROCEDURE deleteCitizenPassword(delPesel VARCHAR(11))
+CREATE OR REPLACE PROCEDURE deleteCitizenPassword(IN delPesel VARCHAR(11))
 BEGIN
     DELETE FROM passwords WHERE pesel = delPesel;
 END $$
 
-CREATE OR REPLACE PROCEDURE deleteCitizenStatus(delPesel VARCHAR(11))
+CREATE OR REPLACE PROCEDURE deleteCitizenStatus(IN delPesel VARCHAR(11))
 BEGIN
     DELETE FROM statuses WHERE pesel = delPesel;
 END $$
 
-CREATE OR REPLACE PROCEDURE deleteCitizenGender(delPesel VARCHAR(11))
+CREATE OR REPLACE PROCEDURE deleteCitizenGender(IN delPesel VARCHAR(11))
 BEGIN
     DELETE FROM genders WHERE pesel = delPesel;
 END $$
 
-CREATE OR REPLACE PROCEDURE deleteCitizenBirthday(delPesel VARCHAR(11))
+CREATE OR REPLACE PROCEDURE deleteCitizenBirthday(IN delPesel VARCHAR(11))
 BEGIN
     DELETE FROM birthdays WHERE pesel = delPesel;
 END $$
 
-CREATE OR REPLACE PROCEDURE deleteCitizenAddress(delPesel VARCHAR(11))
+CREATE OR REPLACE PROCEDURE deleteCitizenAddress(IN delPesel VARCHAR(11))
 BEGIN
     DELETE FROM addresses WHERE pesel = delPesel;
 END $$
 
-CREATE OR REPLACE PROCEDURE changeAddress(pesel VARCHAR(11), city VARCHAR(32), street VARCHAR(32), house INT, flat INT)
+CREATE OR REPLACE PROCEDURE changeAddress(IN pesel VARCHAR(11), IN city VARCHAR(32), IN street VARCHAR(32), IN house INT, IN flat INT)
 BEGIN
     SET AUTOCOMMIT = 0;
     START TRANSACTION;
@@ -51,7 +51,7 @@ BEGIN
     COMMIT;
 END $$
 
-CREATE OR REPLACE PROCEDURE changePassword(pesel VARCHAR(11), oldPassword VARCHAR(32), newPassword VARCHAR(32))
+CREATE OR REPLACE PROCEDURE changePassword(IN pesel VARCHAR(11), IN oldPassword VARCHAR(32), IN newPassword VARCHAR(32))
 BEGIN
     SET AUTOCOMMIT = 0;
     START TRANSACTION;
@@ -65,7 +65,7 @@ BEGIN
     COMMIT;
 END $$
 
-CREATE OR REPLACE PROCEDURE printPersonalData(pesel VARCHAR(11))
+CREATE OR REPLACE PROCEDURE printPersonalData(IN pesel VARCHAR(11), OUT result VARCHAR(200))
 BEGIN
     DECLARE name VARCHAR(32);
     DECLARE surname VARCHAR(32);
@@ -82,16 +82,16 @@ BEGIN
         SET house = getCitizenHouse(pesel);
         SET flat = getCitizenFlat(pesel);
 
-        SELECT CONCAT(name, ' ', surname, ', ', city,  ' ', street, ' ', house, ' ', flat);
+        SELECT CONCAT(name, ' ', surname, ', ', city,  ' ', street, ' ', house, ' ', flat) INTO result;
     ELSE
-        SELECT 'This citizen does not exist.';
+        SELECT 'This citizen does not exist.' INTO result;
     END IF;
 END $$
 
 CREATE OR REPLACE PROCEDURE addCitizen
-    (pesel VARCHAR(11), password VARCHAR(32), status VARCHAR(32),
-    name VARCHAR(32), surname VARCHAR(32), city VARCHAR(32), street VARCHAR(32),
-    house INT, flat INT)
+    (IN pesel VARCHAR(11), IN password VARCHAR(32), IN status VARCHAR(32),
+    IN name VARCHAR(32), IN surname VARCHAR(32), IN city VARCHAR(32), IN street VARCHAR(32),
+    IN house INT, IN flat INT)
 BEGIN
     SET AUTOCOMMIT = 0;
     START TRANSACTION;
@@ -107,14 +107,14 @@ BEGIN
     COMMIT;
 END $$
 
-CREATE OR REPLACE PROCEDURE addCitizenPassword(pesel VARCHAR(11), password VARCHAR(32))
+CREATE OR REPLACE PROCEDURE addCitizenPassword(IN pesel VARCHAR(11), IN password VARCHAR(32))
 BEGIN
     PREPARE stmt FROM 'INSERT INTO passwords VALUES (?, ?)';
     EXECUTE stmt USING pesel, password;
     DEALLOCATE PREPARE stmt;
 END $$
 
-CREATE OR REPLACE PROCEDURE addCitizenStatus(pesel VARCHAR(11), status VARCHAR(32))
+CREATE OR REPLACE PROCEDURE addCitizenStatus(IN pesel VARCHAR(11), IN status VARCHAR(32))
 BEGIN
     PREPARE stmt FROM 'INSERT INTO statuses VALUES (?, ?)';
     EXECUTE stmt USING pesel, status;
@@ -122,22 +122,22 @@ BEGIN
 END $$
 
 CREATE OR REPLACE PROCEDURE addCitizenAddress
-    (pesel VARCHAR(11), city VARCHAR(32), street VARCHAR(32), house INT, flat INT)
+    (IN pesel VARCHAR(11), IN city VARCHAR(32), IN street VARCHAR(32), IN house INT, IN flat INT)
 BEGIN
     PREPARE stmt FROM 'INSERT INTO addresses VALUES (?, ?, ?, ?, ?)';
     EXECUTE stmt USING pesel, city, street, house, flat;
     DEALLOCATE PREPARE stmt;
 END $$
 
-CREATE OR REPLACE PROCEDURE addCitizenGender(pesel VARCHAR(11))
+CREATE OR REPLACE PROCEDURE addCitizenGender(IN apesel VARCHAR(11))
 BEGIN
-    INSERT INTO genders VALUES (pesel, extractGender(pesel));
+    INSERT INTO genders VALUES (pesel, extractGender(apesel));
 END $$
 
-CREATE OR REPLACE PROCEDURE addCitizenBirthday(pesel VARCHAR(11))
+CREATE OR REPLACE PROCEDURE addCitizenBirthday(IN apesel VARCHAR(11))
 BEGIN
-    INSERT INTO birthdays VALUES (pesel, extractDayOfBirth(pesel),
-                                  extractMonthOfBirth(pesel), extractYearOfBirth(pesel));
+    INSERT INTO birthdays VALUES (apesel, extractDayOfBirth(apesel),
+                                  extractMonthOfBirth(apesel), extractYearOfBirth(apesel));
 END $$
 
 CREATE OR REPLACE PROCEDURE deleteCitizen(IN pesel VARCHAR(11), IN status VARCHAR(32), OUT result VARCHAR(60))
