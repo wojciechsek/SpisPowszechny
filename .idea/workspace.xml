@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9385cdbd-38dc-4387-ad15-674285a2ac9e" name="Default Changelist" comment="Minor changes" />
+    <list default="true" id="9385cdbd-38dc-4387-ad15-674285a2ac9e" name="Default Changelist" comment="Fixing bugs.">
+      <change afterPath="$PROJECT_DIR$/Initial data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf905de3-9aea-4faa-a5ee-3beb0e89df68.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf905de3-9aea-4faa-a5ee-3beb0e89df68/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Tables.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,9 +67,9 @@
     <MESSAGE value="Improvements of triggers and procedures." />
     <MESSAGE value="Added users, changed functions and procedures" />
     <MESSAGE value="Minor changes in procedures declarations" />
-    <MESSAGE value="Fixing bugs." />
     <MESSAGE value="Added Logger user, added user passwords, added a new procedure for Logger." />
     <MESSAGE value="Minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor changes" />
+    <MESSAGE value="Fixing bugs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing bugs." />
   </component>
 </project>

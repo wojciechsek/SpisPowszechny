@@ -91,7 +91,7 @@ END $$
 CREATE OR REPLACE PROCEDURE addCitizen
     (IN pesel VARCHAR(11), IN password VARCHAR(32), IN status VARCHAR(32),
     IN name VARCHAR(32), IN surname VARCHAR(32), IN city VARCHAR(32), IN street VARCHAR(32),
-    IN house INT, IN flat INT)
+    IN house INT, IN flat INT, OUT result INT)
 BEGIN
     SET AUTOCOMMIT = 0;
     START TRANSACTION;
@@ -103,6 +103,10 @@ BEGIN
             CALL addCitizenPassword(pesel, MD5(password));
             CALL addCitizenStatus(pesel, status);
             CALL addCitizenAddress(pesel, city, street, house, flat);
+
+            SELECT 1 INTO result;
+        ELSE
+            SELECT 0 INTO result;
         END IF;
     COMMIT;
 END $$
@@ -131,7 +135,7 @@ END $$
 
 CREATE OR REPLACE PROCEDURE addCitizenGender(IN apesel VARCHAR(11))
 BEGIN
-    INSERT INTO genders VALUES (pesel, extractGender(apesel));
+    INSERT INTO genders VALUES (apesel, extractGender(apesel));
 END $$
 
 CREATE OR REPLACE PROCEDURE addCitizenBirthday(IN apesel VARCHAR(11))

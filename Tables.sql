@@ -39,7 +39,7 @@ PRIMARY KEY (gender)
 
 CREATE OR REPLACE TABLE Genders (
 pesel VARCHAR(11),
-gender VARCHAR(32) NOT NULL ,
+gender VARCHAR(32) NOT NULL,
 PRIMARY KEY (pesel),
 FOREIGN KEY (pesel) REFERENCES  Citizens(pesel),
 FOREIGN KEY (gender) REFERENCES  GenderStats(gender)
