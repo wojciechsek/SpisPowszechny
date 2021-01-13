@@ -1,9 +1,13 @@
-CREATE USER Citizen;
+CREATE USER Logger IDENTIFIED BY 'reggoL1';
+GRANT EXECUTE ON PROCEDURE correctLoginData TO Logger;
+GRANT EXECUTE ON PROCEDURE displayStatus TO Logger;
+
+CREATE USER Citizen IDENTIFIED BY 'nezitiC2';
 GRANT EXECUTE ON PROCEDURE printPersonalData TO Citizen;
 GRANT EXECUTE ON PROCEDURE changePassword TO Citizen;
 GRANT EXECUTE ON PROCEDURE changeAddress TO Citizen;
 
-CREATE USER Bureaucrat;
+CREATE USER Bureaucrat IDENTIFIED BY 'tarcuareuB3';
 GRANT EXECUTE ON PROCEDURE printPersonalData TO Bureaucrat;
 GRANT EXECUTE ON PROCEDURE changePassword TO Bureaucrat;
 GRANT EXECUTE ON PROCEDURE changeAddress TO Bureaucrat;
@@ -14,7 +18,7 @@ GRANT EXECUTE ON PROCEDURE displayGenderStats TO Bureaucrat;
 GRANT EXECUTE ON PROCEDURE displayYearStats TO Bureaucrat;
 GRANT EXECUTE ON PROCEDURE displayStatus TO Bureaucrat;
 
-CREATE USER Admin;
+CREATE USER Admin IDENTIFIED BY 'nimdA4';
 GRANT EXECUTE ON PROCEDURE printPersonalData TO Admin;
 GRANT EXECUTE ON PROCEDURE changePassword TO Admin;
 GRANT EXECUTE ON PROCEDURE changeAddress TO Admin;

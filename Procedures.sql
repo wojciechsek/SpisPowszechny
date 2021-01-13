@@ -152,36 +152,35 @@ BEGIN
     END IF;
 END $$
 
-CREATE OR REPLACE PROCEDURE displayCityStats (IN city VARCHAR(32), OUT result INT)
+CREATE OR REPLACE PROCEDURE displayCityStats(IN city VARCHAR(32), OUT result INT)
 BEGIN
     SELECT CS.population INTO result
     FROM citystats CS
     WHERE CS.name = city;
 END $$
 
-CREATE OR REPLACE PROCEDURE displayGenderStats (IN sgender VARCHAR(32), OUT result INT)
+CREATE OR REPLACE PROCEDURE displayGenderStats(IN sgender VARCHAR(32), OUT result INT)
 BEGIN
     SELECT GS.quantity INTO result
     FROM genderstats GS
     WHERE GS.gender = sgender;
 END $$
 
-
-CREATE OR REPLACE PROCEDURE displayYearStats (IN syear INT, OUT result INT)
+CREATE OR REPLACE PROCEDURE displayYearStats(IN syear INT, OUT result INT)
 BEGIN
-    SELECT YS.quantity INTO result
-    FROM yearstats YS
-    WHERE YS.year = syear;
+    SELECT quantity INTO result
+    FROM yearstats
+    WHERE year = syear;
 END $$
 
-CREATE OR REPLACE PROCEDURE displayStatus (IN spesel VARCHAR(11), OUT result VARCHAR(32))
+CREATE OR REPLACE PROCEDURE displayStatus(IN spesel VARCHAR(11), OUT result VARCHAR(32))
 BEGIN
     SELECT S.status INTO result
     FROM statuses S
     WHERE S.pesel = spesel;
 END $$
 
-CREATE OR REPLACE PROCEDURE changeStatus (IN spesel VARCHAR(11), IN newStatus VARCHAR(32))
+CREATE OR REPLACE PROCEDURE changeStatus(IN spesel VARCHAR(11), IN newStatus VARCHAR(32))
 BEGIN
     IF (getStatus(spesel) = 'Citizen' OR getStatus(spesel) = 'Bureaucrat') THEN
         UPDATE statuses
@@ -190,4 +189,12 @@ BEGIN
     END IF;
 END $$
 
+CREATE OR REPLACE PROCEDURE correctLoginData(IN spesel VARCHAR(11), IN spassword VARCHAR(32), OUT result INT)
+BEGIN
+    IF (checkPassword(spesel, spassword)) THEN
+        SELECT '1' INTO result;
+    ELSE
+        SELECT '0' INTO result;
+    END IF;
+END $$
 DELIMITER ;
