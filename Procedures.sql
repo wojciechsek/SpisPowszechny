@@ -41,7 +41,11 @@ CREATE OR REPLACE PROCEDURE changeAddress(IN pesel VARCHAR(11), IN city VARCHAR(
 BEGIN
     SET AUTOCOMMIT = 0;
     START TRANSACTION;
-        IF (pesel REGEXP '^[0-9]+$' AND LENGTH(pesel) = 11 AND citizenExists(pesel) = 0) THEN
+        IF (pesel REGEXP '^[0-9]+$' AND LENGTH(pesel) = 11 AND citizenExists(pesel) = 1) THEN
+            IF (flat = 0) THEN
+                SET flat = null;
+            END IF;
+
             PREPARE stmt FROM 'UPDATE addresses A
                                SET A.city = ?, A.street = ?, A.house = ?, A.flat = ?
                                WHERE A.pesel = ?;';
@@ -59,7 +63,7 @@ BEGIN
             PREPARE stmt FROM 'UPDATE passwords P
                                SET P.password = ?
                                WHERE P.pesel = ?;';
-            EXECUTE stmt USING newPassword, pesel;
+            EXECUTE stmt USING MD5(newPassword), pesel;
             DEALLOCATE PREPARE stmt;
 
             SELECT 1 INTO result;
@@ -69,7 +73,7 @@ BEGIN
     COMMIT;
 END $$
 
-CREATE OR REPLACE PROCEDURE printPersonalData(IN pesel VARCHAR(11), OUT result VARCHAR(200))
+CREATE OR REPLACE PROCEDURE printPersonalData(IN pesel VARCHAR(11), OUT names VARCHAR(50), OUT address VARCHAR(100), OUT birthday VARCHAR(10))
 BEGIN
     DECLARE name VARCHAR(32);
     DECLARE surname VARCHAR(32);
@@ -77,6 +81,9 @@ BEGIN
     DECLARE street VARCHAR(32);
     DECLARE house INT;
     DECLARE flat INT;
+    DECLARE dayOfBirth INT;
+    DECLARE monthOfBirth INT;
+    DECLARE yearOfBirth INT;
 
     IF (citizenExists(pesel)) THEN
         SET name = getCitizenName(pesel);
@@ -85,10 +92,26 @@ BEGIN
         SET street = getCitizenStreet(pesel);
         SET house = getCitizenHouse(pesel);
         SET flat = getCitizenFlat(pesel);
+        SET dayOfBirth = getCitizenDayOfBirth(pesel);
+        SET monthOfBirth = getCitizenMonthOfBirth(pesel);
+        SET yearOfBirth = getCitizenYearOfBirth(pesel);
 
-        SELECT CONCAT(name, ' ', surname, ', ', city,  ' ', street, ' ', house, ' ', flat) INTO result;
+        SELECT CONCAT(name, ' ', surname) INTO names;
+
+        IF (ISNULL(flat)) THEN
+            SELECT CONCAT(city, ', ', street, ' ', house) INTO address;
+        ELSE
+            SELECT CONCAT(city, ', ', street, ' ', house, '/', flat) INTO address;
+        END IF;
+
+        IF (monthOfBirth < 10) THEN
+            SELECT CONCAT(dayOfBirth, '.0', monthOfBirth, '.', yearOfBirth) INTO birthday;
+        ELSE
+            SELECT CONCAT(dayOfBirth, '.', monthOfBirth, '.', yearOfBirth) INTO birthday;
+        END IF;
+
     ELSE
-        SELECT 'This citizen does not exist.' INTO result;
+        SELECT 'There\'s no user with this PESEL number.' INTO names;
     END IF;
 END $$
 
@@ -132,6 +155,10 @@ END $$
 CREATE OR REPLACE PROCEDURE addCitizenAddress
     (IN pesel VARCHAR(11), IN city VARCHAR(32), IN street VARCHAR(32), IN house INT, IN flat INT)
 BEGIN
+    IF (flat = 0) THEN
+        SET flat = null;
+    END IF;
+
     PREPARE stmt FROM 'INSERT INTO addresses VALUES (?, ?, ?, ?, ?)';
     EXECUTE stmt USING pesel, city, street, house, flat;
     DEALLOCATE PREPARE stmt;
@@ -154,9 +181,9 @@ BEGIN
         PREPARE stmt FROM 'DELETE FROM citizens WHERE pesel = ?';
         EXECUTE stmt USING pesel;
         DEALLOCATE PREPARE stmt;
-        SELECT 'This citizen has been deleted.' INTO result;
+        SELECT CONCAT (status, ' has been deleted.') INTO result;
     ELSE
-        SELECT 'This citizen does not exist or cant be deleted.' INTO result;
+        SELECT CONCAT (status, ' does not exist or can\'t be deleted.') INTO result;
     END IF;
 END $$
 
@@ -188,12 +215,15 @@ BEGIN
     WHERE S.pesel = spesel;
 END $$
 
-CREATE OR REPLACE PROCEDURE changeStatus(IN spesel VARCHAR(11), IN newStatus VARCHAR(32))
+CREATE OR REPLACE PROCEDURE changeStatus(IN spesel VARCHAR(11), IN newStatus VARCHAR(32), OUT result INT)
 BEGIN
     IF (getStatus(spesel) = 'Citizen' OR getStatus(spesel) = 'Bureaucrat') THEN
         UPDATE statuses
             SET status = newStatus
             WHERE pesel = spesel;
+        SELECT 1 INTO result;
+    ELSE
+        SELECT 0 INTO result;
     END IF;
 END $$
 
