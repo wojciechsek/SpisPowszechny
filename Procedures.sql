@@ -51,7 +51,7 @@ BEGIN
     COMMIT;
 END $$
 
-CREATE OR REPLACE PROCEDURE changePassword(IN pesel VARCHAR(11), IN oldPassword VARCHAR(32), IN newPassword VARCHAR(32))
+CREATE OR REPLACE PROCEDURE changePassword(IN pesel VARCHAR(11), IN oldPassword VARCHAR(32), IN newPassword VARCHAR(32), OUT result INT)
 BEGIN
     SET AUTOCOMMIT = 0;
     START TRANSACTION;
@@ -61,6 +61,10 @@ BEGIN
                                WHERE P.pesel = ?;';
             EXECUTE stmt USING newPassword, pesel;
             DEALLOCATE PREPARE stmt;
+
+            SELECT 1 INTO result;
+        ELSE
+            SELECT 0 INTO result;
         END IF;
     COMMIT;
 END $$
@@ -196,9 +200,19 @@ END $$
 CREATE OR REPLACE PROCEDURE correctLoginData(IN spesel VARCHAR(11), IN spassword VARCHAR(32), OUT result INT)
 BEGIN
     IF (checkPassword(spesel, spassword)) THEN
-        SELECT '1' INTO result;
+        SELECT 1 INTO result;
     ELSE
-        SELECT '0' INTO result;
+        SELECT 0 INTO result;
     END IF;
 END $$
+
+CREATE OR REPLACE PROCEDURE checkPesel(IN pesel VARCHAR(11), OUT result INT)
+BEGIN
+    IF (citizenExists(pesel)) THEN
+        SELECT 1 INTO result;
+    ELSE
+        SELECT 0 INTO result;
+    END IF;
+END $$
+
 DELIMITER ;
