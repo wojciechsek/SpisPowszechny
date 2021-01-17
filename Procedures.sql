@@ -236,13 +236,4 @@ BEGIN
     END IF;
 END $$
 
-CREATE OR REPLACE PROCEDURE checkPesel(IN pesel VARCHAR(11), OUT result INT)
-BEGIN
-    IF (citizenExists(pesel)) THEN
-        SELECT 1 INTO result;
-    ELSE
-        SELECT 0 INTO result;
-    END IF;
-END $$
-
 DELIMITER ;
